@@ -6,6 +6,8 @@ class PagesController < ApplicationController
     end
     
     def index
+        @markovs = Dictionary.all
+        @markov = Dictionary.last
         @adobe = params[:adobe_id]
         @images = Image.limit(20)
         p @adobe

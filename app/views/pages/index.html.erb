@@ -1,7 +1,54 @@
 トップ画面<br />
 <%= @adobe %><br />
-<%= link_to "管理画面へ", pages_manage_path %>
+<%= link_to "管理画面へ", pages_manage_path %><br />
 
-<% @images.each do |img| %>
-<%= image_tag show_image_image_path(img), class: "middle-img" %>
-<% end %>
+
+<div class="display-inline">
+    <div class="left">
+        <!-- 履歴  -->
+        <div class="history">
+            <h1>History</h1>
+            <% if !@markovs.nil? %>
+              <% @markovs.each do |markov| %>
+                 <%= markov.word %><br />
+                 <%= markov.res %><br /><br />
+              <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<div class="display-inline">
+    <div class="right">
+        
+        <!--  応答 -->
+        <div class="display-inline">
+            <div class="response">
+                <h1>Response</h1>
+                <%= @markov.res %>
+            </div>
+        </div>
+        
+        <!-- 画像  -->
+        <div class="display-inline">
+            <div class="image">
+                <h1>Emotion</h1>
+                <% @images.each do |img| %>
+                    <%= image_tag show_image_image_path(img), class: "middle-img" %>
+                <% end %>
+            </div>
+        </div>
+        
+        <div class="input">
+          <%= form_for :dictionary, url: dictionaries_path do |f| %>
+            <p>
+              <%= f.text_field :word, class: 'form-control input-sm', style: "width:500px;", :placeholder => "入力してください"%>
+            </p>
+            
+            <p>
+              <%= f.submit "話す", class: 'btn btn-primary' %>
+            </p>
+          <% end %>
+        </div>
+    </div>
+</div>

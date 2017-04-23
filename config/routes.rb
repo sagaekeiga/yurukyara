@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'pages/index'
   get 'pages/manage'
   
+  get 'dictionaries/markov_dic'
+  
+  resources :dictionaries, only: [:create, :destroy, :show, :index, :new, :edit, :update]
+
   resources :images
   resources :images do
     member do
