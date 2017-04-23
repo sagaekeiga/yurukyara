@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.7.2"
+lock "3.8.1"
 
 set :application, "yurukyara"
 set :repo_url, "https://github.com/sagaekeiga/yurukyara.git"
@@ -22,11 +22,6 @@ set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 
 set :bundle_jobs, 4
 
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
-set :whenever_command, "bundle exec whenever"
-set :whenever_roles, :batch # 対象のロールを指定
-set :whenever_environment, :production
-require "whenever/capistrano"
 
 
 after 'deploy:publishing', 'deploy:restart'
