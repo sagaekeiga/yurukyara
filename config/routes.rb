@@ -3,4 +3,11 @@ Rails.application.routes.draw do
   root 'pages#confirm'
   get 'pages/index'
   get 'pages/manage'
+  
+  resources :images
+  resources :images do
+    member do
+      get 'show_image'
+    end
+  end
 end

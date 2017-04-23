@@ -1,2 +1,7 @@
 トップ画面<br />
-<%= @adobe %>
+<%= @adobe %><br />
+<%= link_to "管理画面へ", pages_manage_path %>
+
+<% @images.each do |img| %>
+<%= image_tag show_image_image_path(img), class: "middle-img" %>
+<% end %>

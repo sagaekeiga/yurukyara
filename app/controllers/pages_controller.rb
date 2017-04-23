@@ -7,6 +7,7 @@ class PagesController < ApplicationController
     
     def index
         @adobe = params[:adobe_id]
+        @images = Image.limit(20)
         p @adobe
         if @adobe == "1"
             p "1です！"
@@ -18,5 +19,6 @@ class PagesController < ApplicationController
     end
     
     def manage
+        @image = Image.new
     end
 end

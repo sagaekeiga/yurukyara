@@ -1,1 +1,6 @@
 管理画面
+
+<%= form_for(@image) do |f| %>
+  <%= f.file_field :file,accept: "image/jpeg" %>
+  <%= f.submit "アップロードする" %>
+<% end %>
