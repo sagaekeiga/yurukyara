@@ -22,5 +22,6 @@ class PagesController < ApplicationController
     
     def manage
         @image = Image.new
+        @images = Image.limit(20)
     end
 end

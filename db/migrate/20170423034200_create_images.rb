@@ -3,6 +3,7 @@ class CreateImages < ActiveRecord::Migration[5.0]
     create_table :images do |t|
       t.string :filename
       t.binary :file
+      t.string :num, unique: true
 
       t.timestamps
     end

@@ -7,6 +7,25 @@ class DictionariesController < ApplicationController
      p "--------------create"
      p @dic = params[:dictionary][:word]
      markov_dic(@dic)
+    # 単語感情極性対応データベース格納用配列
+    list_db = Array.new
+    
+    # 'db.txt'は上記データベースをテキストファイルに保存したテキストファイル
+    File.open('pn_ja.dic.txt', 'r') do |file|
+        file.each{ |line|
+            h = Hash.new
+            # 単語
+            h['word'.to_sym] = line.encode("UTF-8",:invalid => :replace).chomp.split(':')[0]
+            # 読み
+            h['reading'.to_sym] = line.encode("UTF-8",:invalid => :replace).chomp.split(':')[1]
+            # 品詞
+            h['pos'.to_sym] = line.encode("UTF-8",:invalid => :replace).chomp.split(':')[2]
+            # 感情値
+            h['semantic_orientations'.to_sym] = line.encode("UTF-8",:invalid => :replace).chomp.split(':')[3]
+    
+            p list_db << h
+        }
+    end
     end
     
     

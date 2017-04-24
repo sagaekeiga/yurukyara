@@ -9,10 +9,12 @@ class ImagesController < ApplicationController
 
   def create
     upload_file = image_params[:file]
+    p upload_file_type = params[:image][:num]
     image = {}
-    if upload_file != nil 
+    if upload_file != nil
       image[:filename] = upload_file.original_filename
       image[:file] = upload_file.read
+      image[:num] = upload_file_type
     end 
     @image = Image.new(image)
     if @image.save
@@ -36,7 +38,7 @@ class ImagesController < ApplicationController
 
     def image_params
       params.require(:image).permit(
-        :filename,:file
+        :filename,:file, :num
       )   
     end
 end

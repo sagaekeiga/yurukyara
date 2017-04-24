@@ -25,7 +25,7 @@
         <div class="display-inline">
             <div class="response">
                 <h1>Response</h1>
-                <%= @markov.res %>
+                <%= @markov.res if !@markov.nil?%>
             </div>
         </div>
         
