@@ -1,7 +1,11 @@
 トップ画面<br />
 <%= @adobe %><br />
 <%= link_to "管理画面へ", pages_manage_path %><br />
-
+<% if !@sum.nil? %>
+<%= @sum %>
+<% else %>
+<% @sum = 1 %>
+<% end %>
 
 <div class="display-inline">
     <div class="left">
@@ -33,8 +37,20 @@
         <div class="display-inline">
             <div class="image">
                 <h1>Emotion</h1>
-                <% @images.each do |img| %>
-                    <%= image_tag show_image_image_path(img), class: "middle-img" %>
+                <%  if !@user.nil? && !@sum.nil? %>
+                    <% if -2 > @sum.to_d %>
+                        <%= image_tag("#{show_image1_user_path(@user)}", :size => "200x200")%>
+                    <% elsif @sum.to_d < -1 && @sum.to_d > -2 %>
+                        <%= image_tag("#{show_image2_user_path(@user)}", :size => "200x200")%>
+                    <% elsif 1 > @sum.to_d && @sum.to_d > -1 %>
+                        <%= image_tag("#{show_image3_user_path(@user)}", :size => "200x200")%>
+                    <% elsif @sum.to_d > 1 && @sum.to_d < 2 %>
+                        <%= image_tag("#{show_image4_user_path(@user)}", :size => "200x200")%>
+                    <% elsif @sum.to_d > 2 %>
+                        <%= image_tag("#{show_image5_user_path(@user)}", :size => "200x200")%>
+                    <% elsif @sum == 1 %>
+                        <%= image_tag("#{show_image3_user_path(@user)}", :size => "200x200")%>
+                    <% end %>
                 <% end %>
             </div>
         </div>
@@ -43,6 +59,7 @@
           <%= form_for :dictionary, url: dictionaries_path do |f| %>
             <p>
               <%= f.text_field :word, class: 'form-control input-sm', style: "width:500px;", :placeholder => "入力してください"%>
+              <%= f.hidden_field :sum, :value => @sum %>
             </p>
             
             <p>
@@ -50,5 +67,6 @@
             </p>
           <% end %>
         </div>
+        
     </div>
 </div>

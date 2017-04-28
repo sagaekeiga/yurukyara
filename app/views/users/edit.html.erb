@@ -1,0 +1,64 @@
+<%= form_for(@user) do |f| %>
+    <!--  名前 -->
+    <%= f.text_field :name, class: 'form-control input-sm', style: "width:500px;", :placeholder => "ゆるキャラのお名前"%><br />
+    <!--  自治体名 -->
+    <%= f.text_area :region, class: 'form-control input-sm', style: "width:500px;", size: "10", :placeholder => "自治体名"%><br />
+    <!--  プロフィール -->
+    <%= f.text_area :profile, class: 'form-control input-sm', style: "width:500px;", size: "10", :placeholder => "プロフィール"%><br />
+    
+    <!--  不機嫌2  -->
+    <div class="display-inline">
+    <div class="image">
+        <h1>不機嫌2</h1>
+        <%= image_tag show_image1_user_path(@user) %>
+        <%= f.file_field :image1,accept: "image/jpeg" %>
+    </div>
+    </div>
+    
+    <!--  不機嫌1  -->
+    <div class="display-inline">
+    <div class="image">
+        <h1>不機嫌1</h1>
+        <%= image_tag show_image2_user_path(@user) %>
+        <%= f.file_field :image2,accept: "image/jpeg" %>
+    </div>
+    </div>
+
+    <!--  普通  -->
+    <div class="display-inline">
+    <div class="image">
+        <h1>普通</h1>
+        <%= image_tag show_image3_user_path(@user) %>
+        <%= f.file_field :image3,accept: "image/jpeg" %>
+    </div>
+    </div>
+
+    <!--  不機嫌2  -->
+    <div class="display-inline">
+    <div class="image">
+        <h1>上機嫌1</h1>
+        <%= image_tag show_image4_user_path(@user) %>
+        <%= f.file_field :image4,accept: "image/jpeg" %>
+    </div>
+    </div>
+
+    <!--  不機嫌2  -->
+    <div class="display-inline">
+    <div class="image">
+        <h1>上機嫌2</h1>
+        <%= image_tag show_image5_user_path(@user) %>
+        <%= f.file_field :image5,accept: "image/jpeg" %>
+    </div>
+    </div>
+
+    <!--  不機嫌2  -->
+    <div class="display-inline">
+    <div class="image">
+        <h1>進化</h1>
+        <%= image_tag show_evo_user_path(@user) %>
+        <%= f.file_field :evolution,accept: "image/jpeg" %>
+    </div>
+    </div>
+    
+    <%= f.submit "登録", class: 'btn btn-primary' %>
+<% end %>

@@ -1,40 +1,28 @@
 <div>管理画面</div>
 
 
+<% if !@user.nil? %>
+キャラクター名：<%= @user.name %><br />
+地域：<%= @user.region %><br />
+プロフィール：<%= @user.profile %><br />
+合計単語数:<%= @dic.count %><br />
+<%= link_to "編集", edit_user_path(@user.id) %>
+
 
 <!--  不機嫌2  -->
 <div class="display-inline">
 <div class="image">
     <h1>不機嫌2</h1>
-    <% @images.each do |img| %>
-        <% if img.num == "1" && !img.nil? %>
-          <%= image_tag show_image_image_path(img), class: "middle-img" %>
-        <% end %>
-    <% end %>
-    
-    <%= form_for(@image) do |f| %>
-      <%= f.file_field :file,accept: "image/jpeg" %>
-      <%= f.hidden_field :num, :value => "1" %>
-      <%= f.submit "設定する" %>
-    <% end %>
+        <%= image_tag("#{show_image1_user_path(@user)}", :size => "200x200")%>
 </div>
 </div>
+
 
 <!--  不機嫌1  -->
 <div class="display-inline">
   <div class="image">
     <h1>不機嫌1</h1>
-      <% @images.each do |img| %>
-          <% if img.num == "2" %>
-            <%= image_tag show_image_image_path(img), class: "middle-img" %>
-          <% end %>
-      <% end %>
-      
-      <%= form_for(@image) do |f| %>
-        <%= f.file_field :file,accept: "image/jpeg" %>
-        <%= f.hidden_field :num, :value => "2" %>
-        <%= f.submit "設定する" %>
-      <% end %>
+        <%= image_tag("#{show_image2_user_path(@user)}", :size => "200x200")%>
   </div>
 </div>
 
@@ -44,17 +32,7 @@
 <div class="display-inline">
   <div class="image">
       <h1>普通</h1>
-      <% @images.each do |img| %>
-          <% if img.num == "3" %>
-            <%= image_tag show_image_image_path(img), class: "middle-img" %>
-          <% end %>
-      <% end %>
-      
-      <%= form_for(@image) do |f| %>
-        <%= f.file_field :file,accept: "image/jpeg" %>
-        <%= f.hidden_field :num, :value => "3" %>
-        <%= f.submit "設定する" %>
-      <% end %>
+        <%= image_tag("#{show_image3_user_path(@user)}", :size => "200x200")%>
   </div>
 </div>
 
@@ -63,17 +41,7 @@
 <div class="display-inline">
   <div class="image">
       <h1>ご機嫌1</h1>
-      <% @images.each do |img| %>
-          <% if img.num == "4" %>
-            <%= image_tag show_image_image_path(img), class: "middle-img" %>
-          <% end %>
-      <% end %>
-      
-      <%= form_for(@image) do |f| %>
-        <%= f.file_field :file,accept: "image/jpeg" %>
-        <%= f.hidden_field :num, :value => "4" %>
-        <%= f.submit "設定する" %>
-      <% end %>
+        <%= image_tag("#{show_image4_user_path(@user)}", :size => "200x200")%>
   </div>
 </div>
 
@@ -81,16 +49,18 @@
 <div class="display-inline">
   <div class="image">
       <h1>ご機嫌2</h1>
-      <% @images.each do |img| %>
-          <% if img.num == "5" %>
-            <%= image_tag show_image_image_path(img), class: "middle-img" %>
-          <% end %>
-      <% end %>
-      
-      <%= form_for(@image) do |f| %>
-        <%= f.file_field :file,accept: "image/jpeg" %>
-        <%= f.hidden_field :num, :value => "5" %>
-        <%= f.submit "設定する" %>
-      <% end %>
+        <%= image_tag("#{show_image5_user_path(@user)}", :size => "200x200")%>
   </div>
 </div>
+
+<!--  ご機嫌2  -->
+<div class="display-inline">
+  <div class="image">
+      <h1>進化</h1>
+        <%= image_tag("#{show_evo_user_path(@user)}", :size => "200x200")%>
+  </div>
+</div>
+
+<% end %>
+
+<%= line_chart @chart_data %>

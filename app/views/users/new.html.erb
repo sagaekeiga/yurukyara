@@ -1,0 +1,28 @@
+<%= form_for :user, url: users_path do |f| %>
+    <!--  名前 -->
+    <%= f.text_field :name, class: 'form-control input-sm', style: "width:500px;", :placeholder => "ゆるキャラのお名前"%><br />
+    <!--  自治体名 -->
+    <%= f.text_area :region, class: 'form-control input-sm', style: "width:500px;", size: "10", :placeholder => "自治体名"%><br />
+    <!--  プロフィール -->
+    <%= f.text_area :profile, class: 'form-control input-sm', style: "width:500px;", size: "10", :placeholder => "プロフィール"%><br />
+    
+    <h1>不機嫌2</h1>
+    <%= f.file_field :image1,accept: "image/jpeg" %>
+
+    <h1>不機嫌1</h1>
+    <%= f.file_field :image2,accept: "image/jpeg" %>
+    
+    <h1>普通</h1>
+    <%= f.file_field :image3,accept: "image/jpeg" %>
+    
+    <h1>上機嫌1</h1>
+    <%= f.file_field :image4,accept: "image/jpeg" %>
+
+    <h1>上機嫌2</h1>
+    <%= f.file_field :image5,accept: "image/jpeg" %>
+
+    <h1>進化</h1>
+    <%= f.file_field :evolution,accept: "image/jpeg" %>
+    
+    <%= f.submit "登録", class: 'btn btn-primary' %>
+<% end %>

@@ -2,35 +2,16 @@ class DictionariesController < ApplicationController
     require 'pp'
     require 'enumerator'
 
-
+    #-----------------res用入力値の受け取り
     def create
-     p "--------------create"
      p @dic = params[:dictionary][:word]
-     markov_dic(@dic)
-    # 単語感情極性対応データベース格納用配列
-    list_db = Array.new
-    
-    # 'db.txt'は上記データベースをテキストファイルに保存したテキストファイル
-    File.open('pn_ja.dic.txt', 'r') do |file|
-        file.each{ |line|
-            h = Hash.new
-            # 単語
-            h['word'.to_sym] = line.encode("UTF-8",:invalid => :replace).chomp.split(':')[0]
-            # 読み
-            h['reading'.to_sym] = line.encode("UTF-8",:invalid => :replace).chomp.split(':')[1]
-            # 品詞
-            h['pos'.to_sym] = line.encode("UTF-8",:invalid => :replace).chomp.split(':')[2]
-            # 感情値
-            h['semantic_orientations'.to_sym] = line.encode("UTF-8",:invalid => :replace).chomp.split(':')[3]
-    
-            p list_db << h
-        }
-    end
+     @sum = params[:dictionary][:sum]
+     markov_dic(@dic, @sum)
     end
     
     
     #マルコフ辞書の作成
-    def markov_dic(input)
+    def markov_dic(input, sum)
         text = File.open('.//text.txt').read.gsub(/(\s)/,"")
     	
         # mecabで形態素解析して、 参照テーブルを作る
@@ -59,7 +40,7 @@ class DictionariesController < ApplicationController
         @markov_dic.res = @markov_res
         @markov_dic.save
         
-        redirect_to pages_index_path
+        redirect_to emotions_analysis_path(sum: sum)
     end
     
 

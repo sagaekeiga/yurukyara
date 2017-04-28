@@ -6,10 +6,11 @@ class PagesController < ApplicationController
     end
     
     def index
+        @sum = params[:sum]
+        @user = User.find_by(id: 1)
         @markovs = Dictionary.all
         @markov = Dictionary.last
         @adobe = params[:adobe_id]
-        @images = Image.limit(20)
         p @adobe
         if @adobe == "1"
             p "1です！"
@@ -21,7 +22,8 @@ class PagesController < ApplicationController
     end
     
     def manage
-        @image = Image.new
-        @images = Image.limit(20)
+        @user = User.find_by(id: 1)
+        @chart_data = Dictionary.order('date ASC').group(:date).count
+        @dic = Dictionary.all
     end
 end

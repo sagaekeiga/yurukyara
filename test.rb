@@ -64,23 +64,6 @@ TweetStream::Client.new.sample do |status, client|
 
     list_db = Array.new
     
-    # 'db.txt'は上記データベースをテキストファイルに保存したテキストファイル
-    File.open('db.txt', 'r') do |file|
-        file.each{ |line|
-            h = Hash.new
-            # 単語
-            h['word'.to_sym] = line.chomp.split(':')[0]
-            # 読み
-            h['reading'.to_sym] = line.chomp.split(':')[1]
-            # 品詞
-            h['pos'.to_sym] = line.chomp.split(':')[2]
-            # 感情値
-            h['semantic_orientations'.to_sym] = line.chomp.split(':')[3]
-    
-            p list_db << h
-        }
-    end
-    
     # 感情値格納用配列
     list_semantic = Array.new
     
